@@ -1,0 +1,27 @@
+{
+  "name": "crypto_course_2024_project",
+  "version": "1.0.0",
+  "description": "A frontend website for cryptography systems",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Thanh-Dao Nguyen, Bao-Dung Nguyen, Huu-Phuong Nguyen",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thanhdaonguyen/crypto_course_2024_project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thanhdaonguyen/crypto_course_2024_project/issues"
+  },
+  "homepage": "https://github.com/thanhdaonguyen/crypto_course_2024_project#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.0"
+  }
+}
