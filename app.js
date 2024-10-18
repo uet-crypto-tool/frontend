@@ -14,14 +14,14 @@ app.use("/vendor", express.static(path.join(__dirname, "vendor")));
 
 // Serve HTML files for specific routes
 app.get("/", (req, res) => {
-    res.render("index", {
+    res.render("crypto-systems", {
         title: "Home Page",
         message: "Welcome to my EJS site!",
     });
 });
 
-app.get("/browse", (req, res) => {
-    res.render("browse", {
+app.get("/algorithms", (req, res) => {
+    res.render("crypto-algorithms", {
         title: "Home Page",
         message: "Welcome to my EJS site!",
     });
@@ -47,6 +47,28 @@ app.get("/streams", (req, res) => {
         message: "Welcome to my EJS site!",
     });
 });
+
+app.get("/crypto-systems/rsa", (req, res) => {
+    res.render("crypto-systems/rsa", {
+        title: "Home Page",
+        message: "Welcome to my EJS site!",
+    });
+});
+
+app.get("/crypto-systems/elgamal", (req, res) => {
+    res.render("crypto-systems/elgamal", {
+        title: "Home Page",
+        message: "Welcome to my EJS site!",
+    });
+});
+
+app.get("/crypto-systems/ecc", (req, res) => {
+    res.render("crypto-systems/ecc", {
+        title: "Home Page",
+        message: "Welcome to my EJS site!",
+    });
+});
+
 
 // Start the server
 app.listen(PORT, () => {

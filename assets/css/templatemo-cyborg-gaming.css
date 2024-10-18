@@ -805,65 +805,73 @@ Most Popular Style
 --------------------------------------------- 
 */
 
-.most-popular {
+.all-crypto-systems {
   /* margin-top: 30px; */
   padding: 30px;
   background-color: #1f2122;
   border-radius: 23px;
 }
 
-.most-popular .item {
+.all-crypto-systems .item {
   background-color: #27292a;
   padding: 30px 15px;
   border-radius: 23px;
   margin-bottom: 30px;
 }
 
-.most-popular .item .item {
+.all-crypto-systems .item:hover {
+  background-color: #1f2122;
+  border: 1px solid #ec6090;
+  box-shadow: 0px 0px 10px rgba(236, 96, 144, 0.5);
+  cursor: pointer;
+}
+
+
+.all-crypto-systems .item .item {
   padding: 0px;
   border-radius: 0px;
   background-color: transparent;
   margin-bottom: 0px;
 }
 
-.most-popular .item img {
+.all-crypto-systems .item img {
   border-radius: 23px;
 }
 
-.most-popular .item h4 {
+.all-crypto-systems .item h4 {
   font-size: 15px;
   margin-top: 20px;
   margin-bottom: 0px;
   display: inline-block;
 }
 
-.most-popular .item span {
+.all-crypto-systems .item span {
   color: #666;
   display: block;
   margin-top: 7px;
   font-weight: 400;
 }
 
-.most-popular .item ul {
+.all-crypto-systems .item ul {
   float: right;
   margin-top: 20px;
 }
 
-.most-popular .item ul li {
+.all-crypto-systems .item ul li {
   text-align: right;
   color: #fff;
   font-size: 14px;
 }
 
-.most-popular .item ul li:first-child i {
+.all-crypto-systems .item ul li:first-child i {
   color: yellow;
 }
 
-.most-popular .item ul li:last-child i {
+.all-crypto-systems .item ul li:last-child i {
   color: #ec6090;
 }
 
-.most-popular .main-button {
+.all-crypto-systems .main-button {
   text-align: center;
   margin-bottom: -53px;
 }
@@ -1685,7 +1693,7 @@ body {
     max-height: 100%;
     min-height: 100%;
   }
-  .most-popular .item .inner-item {
+  .all-crypto-systems .item .inner-item {
     margin-bottom: 20px;
   }
 }
@@ -1732,4 +1740,24 @@ body {
   .gaming-library .item ul li {
     width: 16%;
   }
+}
+
+.parameter-input {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.parameter-input input {
+  background-color: #27292a;
+  height: 46px;
+  border-radius: 23px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 0px 15px 0px 45px;
+  font-weight: 600;
 }
