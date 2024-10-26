@@ -51,33 +51,51 @@ https://templatemo.com/tm-579-cyborg-gaming
                                         <h4>Welcome to Elliptic Curve</h4>
                                     </div>
                                     <div class="col-12">
-                                        <div class="crypto-systems-input">
-                                            <form class="parameter-input" action="#">
-                                                Enter p: <input
-                                                    class="col-lg-5"
-                                                    type="text"
-                                                    placeholder="Type p"
-                                                    id="p-input"
-                                                    name="p-number"
-                                                    onkeypress="handle"
-                                                />
-                                                Enter a: <input
-                                                    class="col-lg-5"
-                                                    type="text"
-                                                    placeholder="Type a"
-                                                    id="a-input"
-                                                    name="a-number"
-                                                    onkeypress="handle"
-                                                />
-                                                Enter b: <input
-                                                    class="col-lg-5"
-                                                    type="text"
-                                                    placeholder="Type b"
-                                                    id="b-input"
-                                                    name="b-number"
-                                                    onkeypress="handle"
-                                                />
-                                            </form>
+                                        <div class="crypto-systems-creation">
+                                            <div class="crypto-systems-input" style="display: flex; flex-direction: column;">
+                                                <h4 style="color: aqua;">Enter parameters</h4>
+                                                <form class="parameter-input" action="#">
+                                                    Enter p: <input
+                                                        class="col-lg-5"
+                                                        type="text"
+                                                        placeholder="Type p"
+                                                        id="p-input"
+                                                        name="p-number"
+                                                        onkeypress="handle"
+                                                    />
+                                                    Enter a: <input
+                                                        class="col-lg-5"
+                                                        type="text"
+                                                        placeholder="Type a"
+                                                        id="a-input"
+                                                        name="a-number"
+                                                        onkeypress="handle"
+                                                    />
+                                                    Enter b: <input
+                                                        class="col-lg-5"
+                                                        type="text"
+                                                        placeholder="Type b"
+                                                        id="b-input"
+                                                        name="b-number"
+                                                        onkeypress="handle"
+                                                    />
+                                                </form>
+                                            </div>
+                                            <div class="crypto-systems-stats">
+                                                <h3 style="color:aqua">Stats</h3>
+                                                <div class="crypto-systems-stats-item">
+                                                    <h4>Elliptic Curve</h4>
+                                                    <p id="ecc">y^2 = x^3 + ax + b</p>
+                                                </div>
+                                                <div class="crypto-systems-stats-item">
+                                                    <h4>Point Addition</h4>
+                                                    <p id="point-addition">P + Q = R</p>
+                                                </div>
+                                                <div class="crypto-systems-stats-item">
+                                                    <h4>Point Doubling</h4>
+                                                    <p id="point-doubling">P + P = R</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

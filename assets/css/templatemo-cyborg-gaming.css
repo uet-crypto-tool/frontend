@@ -806,10 +806,11 @@ Most Popular Style
 */
 
 .all-crypto-systems {
-  /* margin-top: 30px; */
+  margin-bottom: 60px;
   padding: 30px;
   background-color: #1f2122;
   border-radius: 23px;
+  
 }
 
 .all-crypto-systems .item {
@@ -1751,6 +1752,27 @@ body {
   flex-direction: column;
 }
 
+.result-box {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.result-box input {
+  background-color: #27292a;
+  height: 46px;
+  width: 600px;
+  border-radius: 23px;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  padding: 0px 15px 0px 45px;
+  font-weight: 600;
+}
+
 .parameter-input input {
   background-color: #27292a;
   height: 46px;
@@ -1760,4 +1782,25 @@ body {
   font-size: 16px;
   padding: 0px 15px 0px 45px;
   font-weight: 600;
+}
+
+.crypto-systems-creation {
+  display: flex;
+  justify-content: space-between;
+}
+
+.crypto-systems-input, .crypto-systems-stats {
+  flex: 1;
+  margin: 0 10px; /* Optional: Add some margin for spacing */
+}
+.text-area-large {
+  width: 100%;
+  height: 300px; /* Adjust the height as needed */
+  padding: 15px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #333;
+  color: #f8f9fa ;
+  resize: none; /* Prevents resizing by the user */
 }
