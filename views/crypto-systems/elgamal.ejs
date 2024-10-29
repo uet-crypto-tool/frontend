@@ -75,6 +75,82 @@ https://templatemo.com/tm-579-cyborg-gaming
                                 </div>
                             </div>
                         </div>
+                        <div class="all-crypto-systems">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="heading-section">
+                                        <h4>Key Distribution</h4>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="crypto-systems-input">
+                                            <h4 class="text-white fs-4 fw-bold">Public key:</h4>
+                                            <div class="result-box">
+                                                <label for="d-result">n:</label>
+                                                <input type="text" id="n-result" readonly>
+                                                <button onclick="copyToClipboard('n-result')">Copy</button>
+                                            </div>
+                                            <div class="result-box">
+                                                <label for="e-result">e:</label>
+                                                <input type="text" id="e-result" readonly>
+                                                <button onclick="copyToClipboard('e-result')">Copy</button>
+                                            </div>
+                                            <h4 class="text-white fs-4 fw-bold">Private key:</h4>
+                                            <div class="result-box">
+                                                <label for="d-result">d:</label>
+                                                <input type="text" id="d-result" readonly>
+                                                <button onclick="copyToClipboard('d-result')">Copy</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="all-crypto-systems">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="heading-section">
+                                        <h4>Encryption</h4>
+                                    </div>
+                                    <div class="flex-direction: row">
+                                        <div class="col-6">
+                                            <h4 class="text-white fs-4 fw-bold">Plain text:</h4>
+                                            <textarea class="text-area-large"></textarea>
+                                        </div>
+                                        <div class="col-6">
+                                            <h4 class="text-white fs-4 fw-bold">Encrypted text:</h4>
+                                            <textarea class="text-area-large" readonly></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <button class="btn btn-primary" onclick="encryptText()">Encrypt</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="all-crypto-systems">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="heading-section">
+                                        <h4>Decryption</h4>
+                                    </div>
+                                    <div class="flex-direction: row">
+                                        <div class="col-6">
+                                            <h4 class="text-white fs-4 fw-bold">Encrypted text:</h4>
+                                            <textarea class="text-area-large"></textarea>
+                                        </div>
+                                        <div class="col-6">
+                                            <h4 class="text-white fs-4 fw-bold">Plain text:</h4>
+                                            <textarea class="text-area-large" readonly></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="text-center mt-3">
+                                        <button class="btn btn-primary" onclick="decryptText()">Decrypt</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

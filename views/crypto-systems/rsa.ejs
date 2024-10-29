@@ -55,14 +55,14 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     </div>
                                     <div class="col-12">
                                         <div class="crypto-systems-input">
-                                            <form class="parameter-input" action="#">
+                                            <form class="parameter-input" id="build-form">
                                                 Enter p: <input
                                                     class="col-lg-10"
                                                     type="text"
                                                     placeholder="Type p"
                                                     id="p-input"
                                                     name="p-number"
-                                                    onkeypress="handle"
+
                                                 />
                                                 Enter q: <input
                                                     class="col-lg-10"
@@ -70,7 +70,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                     placeholder="Type q"
                                                     id="q-input"
                                                     name="q-number"
-                                                    onkeypress="handle"
+
                                                 />
                                                 Enter e: <input
                                                     class="col-lg-10"
@@ -78,12 +78,13 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                     placeholder="Type e"
                                                     id="e-input"
                                                     name="e-number"
-                                                    onkeypress="handle"
+
                                                 />
+                                                <div class="text-center mt-3">
+                                                    <button class="btn btn-primary" type="submit">Build</button>
+                                                    <button class="btn btn-primary" onclick="autoGenCrypSys()">Auto Generate</button>
+                                                </div>
                                             </form>
-                                        </div>
-                                        <div class="text-center mt-3">
-                                            <button class="btn btn-primary" onclick="buildCryptoSys()">Build</button>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +103,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                                             <div class="result-box">
                                                 <label for="d-result">n:</label>
                                                 <input type="text" id="n-result" readonly>
-                                                <button onclick="copyToClipboard('d-result')">Copy</button>
+                                                <button onclick="copyToClipboard('n-result')">Copy</button>
                                             </div>
                                             <div class="result-box">
                                                 <label for="e-result">e:</label>
@@ -127,14 +128,18 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     <div class="heading-section">
                                         <h4>Encryption</h4>
                                     </div>
-                                    <div class="flex-direction: row">
-                                        <div class="col-6">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text:</h4>
-                                            <textarea class="text-area-large"></textarea>
+                                    <div class="flex-direction: column">
+                                        <div class="col-12">
+                                            <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
+                                            <textarea id="plain-alphabet-encrypt" placeholder="Type here" class="text-area-large"></textarea>
                                         </div>
-                                        <div class="col-6">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text:</h4>
-                                            <textarea class="text-area-large" readonly></textarea>
+                                        <div class="col-12">
+                                            <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
+                                            <textarea id="plain-integer-encrypt" class="text-area-large"  readonly></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
+                                            <textarea id="cipher-integer-encrypt" class="text-area-large" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
@@ -150,14 +155,18 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     <div class="heading-section">
                                         <h4>Decryption</h4>
                                     </div>
-                                    <div class="flex-direction: row">
-                                        <div class="col-6">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text:</h4>
-                                            <textarea class="text-area-large"></textarea>
+                                    <div class="flex-direction: column">
+                                        <div class="col-12">
+                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
+                                            <textarea placeholder="Type here" id="cipher-integer-decrypt" class="text-area-large" ></textarea>
                                         </div>
-                                        <div class="col-6">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text:</h4>
-                                            <textarea class="text-area-large" readonly></textarea>
+                                        <div class="col-12">
+                                            <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
+                                            <textarea class="text-area-large"  id="plain-integer-decrypt" readonly></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
+                                            <textarea readonly id="plain-alphabet-decrypt" class="text-area-large"></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
@@ -181,5 +190,6 @@ https://templatemo.com/tm-579-cyborg-gaming
         <script src="../assets/js/tabs.js"></script>
         <script src="../assets/js/popup.js"></script>
         <script src="../assets/js/custom.js"></script>
+        <script src="../assets/js/cryptosystem/rsa.js"></script>
     </body>
 </html>
