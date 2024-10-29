@@ -27,6 +27,13 @@ app.get("/algorithms", (req, res) => {
     });
 });
 
+app.get("/signatures", (req, res) => {
+    res.render("crypto-signatures", {
+        title: "Home Page",
+        message: "Welcome to my EJS site!",
+    });
+});
+
 app.get("/details", (req, res) => {
     res.render("details", {
         title: "Home Page",
@@ -63,6 +70,27 @@ app.get("/crypto-systems/elgamal", (req, res) => {
 });
 
 app.get("/crypto-systems/ecc", (req, res) => {
+    res.render("crypto-systems/ecc", {
+        title: "Home Page",
+        message: "Welcome to my EJS site!",
+    });
+});
+
+app.get("/crypto-signatures/rsa", (req, res) => {
+    res.render("crypto-systems/rsa", {
+        title: "Home Page",
+        message: "Welcome to my EJS site!",
+    });
+});
+
+app.get("/crypto-signatures/elgamal", (req, res) => {
+    res.render("crypto-systems/elgamal", {
+        title: "Home Page",
+        message: "Welcome to my EJS site!",
+    });
+});
+
+app.get("/crypto-signatures/ecc", (req, res) => {
     res.render("crypto-systems/ecc", {
         title: "Home Page",
         message: "Welcome to my EJS site!",
