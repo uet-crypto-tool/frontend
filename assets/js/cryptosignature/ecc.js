@@ -41,7 +41,7 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch("http://localhost:8000/crypto_system/rsa/generate_key", {
+    fetch(process.env.API+"/crypto_system/rsa/generate_key", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -118,7 +118,7 @@ function verify() {
 
     console.log(data);
 
-    fetch("http://localhost:8000/signature_scheme/ecdsa/verify", {
+    fetch(process.env.API+"/signature_scheme/ecdsa/verify", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -159,7 +159,7 @@ function sign() {
 
     console.log(data);
 
-    fetch("http://localhost:8000/signature_scheme/ecdsa/sign", {
+    fetch(process.env.API+"/signature_scheme/ecdsa/sign", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -185,7 +185,7 @@ function generateKey() {
         curve_name: curve_name,
     };
     console.log(data);
-    url = "http://localhost:8000/signature_scheme/ecdsa/generate_key";
+    url = process.env.API+"/signature_scheme/ecdsa/generate_key";
     fetch(url, {
         method: "POST",
         headers: {
@@ -234,7 +234,7 @@ function autoGenCrypSys() {
         "secp521r1",
     ];
     curve_name = list_curve[Math.floor(Math.random() * list_curve.length)];
-    url = "http://localhost:8000/elliptice_curve/domains/" + curve_name;
+    url = process.env.API+"/elliptice_curve/domains/" + curve_name;
     fetch(url, {
         method: "GET",
         headers: {

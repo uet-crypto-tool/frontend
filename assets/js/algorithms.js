@@ -17,7 +17,7 @@ aksForm.addEventListener("submit", (event) => {
     };
     console.log(data);
     // Send the form data using fetch
-    fetch("http://localhost:8000/prime/aks/check", {
+    fetch(process.env.API+"/prime/aks/check", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -68,7 +68,7 @@ millerRabbinForm.addEventListener("submit", (event) => {
     };
     console.log(data);
     // Send the form data using fetch
-    fetch("http://localhost:8000/prime/miller_rabbin/check", {
+    fetch(process.env.API+"/prime/miller_rabbin/check", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -114,7 +114,7 @@ generatePrimeForm.addEventListener("submit", (event) => {
     };
     console.log(data);
     // Send the form data using fetch
-    fetch("http://localhost:8000/prime/generate", {
+    fetch(process.env.API+"/prime/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

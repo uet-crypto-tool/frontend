@@ -16,7 +16,7 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch("http://localhost:8000/crypto_system/asymmetric/elgamal/generate_key", {
+    fetch(process.env.API+"/crypto_system/asymmetric/elgamal/generate_key", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -88,7 +88,7 @@ function encryptText() {
 
     console.log(data);
 
-    fetch("http://localhost:8000/crypto_system/asymmetric/elgamal/encrypt", {
+    fetch(process.env.API+"/crypto_system/asymmetric/elgamal/encrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -135,7 +135,7 @@ function decryptText() {
 
     console.log(data);
 
-    fetch("http://localhost:8000/crypto_system/asymmetric/elgamal/decrypt", {
+    fetch(process.env.API+"/crypto_system/asymmetric/elgamal/decrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

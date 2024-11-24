@@ -16,7 +16,7 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch("http://localhost:8000/signature_scheme/rsa/generate_key", {
+    fetch(process.env.API+"/signature_scheme/rsa/generate_key", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -96,7 +96,7 @@ function sign() {
 
     console.log(data);
 
-    fetch("http://localhost:8000/signature_scheme/rsa/sign", {
+    fetch(process.env.API+"/signature_scheme/rsa/sign", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -142,7 +142,7 @@ function verify() {
 
     console.log(data);
 
-    fetch("http://localhost:8000/signature_scheme/rsa/verify", {
+    fetch(process.env.API+"/signature_scheme/rsa/verify", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -167,7 +167,7 @@ function autoGenCrypSys() {
     p.value = 2614159;
     q.value = 4695947;
 
-    fetch("http://localhost:8000/prime/generate", {
+    fetch(process.env.API+"/prime/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -184,7 +184,7 @@ function autoGenCrypSys() {
         .catch((error) => {
             console.error("Error:", error);
         });
-    fetch("http://localhost:8000/prime/generate", {
+    fetch(process.env.API+"/prime/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
