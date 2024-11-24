@@ -41,7 +41,7 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch(window.env.API+"/crypto_system/rsa/generate_key", {
+    fetch("http://localhost:8000/crypto_system/rsa/generate_key", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -113,7 +113,7 @@ function encryptText() {
 
     console.log(data);
 
-    fetch(window.env.API+"/crypto_system/asymmetric/ecc/encrypt", {
+    fetch("http://localhost:8000/crypto_system/asymmetric/ecc/encrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -156,13 +156,13 @@ function decryptText() {
     let data = {
         privateKey: privateKey,
         encrypted_message: {
-            pair_points:[[x_cipherText1, y_cipherText1], [x_cipherText2, y_cipherText2]]
+            pair_points: [[{x: x_cipherText1, y: y_cipherText1 }, {x: x_cipherText2, y: y_cipherText2 }]]
         },
     };
 
     console.log(data);
 
-    fetch(window.env.API+"/crypto_system/asymmetric/ecc/decrypt", {
+    fetch("http://localhost:8000/crypto_system/asymmetric/ecc/decrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -189,7 +189,7 @@ function generateKey() {
         secret_number: s.value,
     };
     console.log(data);
-    url = window.env.API+"/crypto_system/asymmetric/ecc/generate_key";
+    url = "http://localhost:8000/crypto_system/asymmetric/ecc/generate_key";
     fetch(url, {
         method: "POST",
         headers: {
@@ -236,7 +236,7 @@ function autoGenCrypSys() {
         "secp521r1",
     ];
     curve_name = list_curve[Math.floor(Math.random() * list_curve.length)];
-    url = window.env.API+"/elliptice_curve/domains/" + curve_name;
+    url = "http://localhost:8000/elliptice_curve/domains/" + curve_name;
     fetch(url, {
         method: "GET",
         headers: {

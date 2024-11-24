@@ -187,5 +187,5 @@ function autoGenCrypSys() {
         .catch((error) => {
             console.error("Error:", error);
         });
-    e.value = Math.floor(Math.random() * ((p.value * q.value - 1) - 0 + 1) ) + 0;
+
 }
