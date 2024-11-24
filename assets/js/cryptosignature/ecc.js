@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // console.log('RSA script loaded');
 
     // Get the textarea elements
-    const plainTextAlphabet = document.getElementById('plain-alphabet-encrypt');
-    const plainTextInteger = document.getElementById('plain-integer-encrypt');
+    const plainTextAlphabet = document.getElementById('plain-alphabet-sign');
+    const plainTextInteger = document.getElementById('plain-integer-sign');
 
     // Function to convert text to integer representation
     function convertTextToInteger(text) {
@@ -95,25 +95,30 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 });
 
-function encryptText() {
-    let plainText = document.getElementById("plain-integer-encrypt").value;
+function verify() {
+    let plainText = document.getElementById("plain-integer-verify").value;
     let publicKey = {
         curve_name: curve_name,
-        B: {
-            x: document.getElementById("xB-pubkey").value,
-            y: document.getElementById("yB-pubkey").value,
+        Q: {
+            x: document.getElementById("xQ-pubkey").value,
+            y: document.getElementById("yQ-pubkey").value,
         },
         message: plainText,
+    };
+    let signature = {
+        r: document.getElementById("r-signature-verify").value,
+        s: document.getElementById("s-signature-verify").value,
     };
 
     let data = {
         publicKey: publicKey,
         message: plainText,
+        signature: signature,
     };
 
     console.log(data);
 
-    fetch("http://localhost:8000/crypto_system/asymmetric/ecc/encrypt", {
+    fetch("http://localhost:8000/signature_scheme/ecdsa/verify", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -123,10 +128,7 @@ function encryptText() {
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("cipher-x-encrypt-1").value = result.encrypted_message.pair_points[0][0].x;
-            document.getElementById("cipher-y-encrypt-1").value = result.encrypted_message.pair_points[0][0].y;
-            document.getElementById("cipher-x-encrypt-2").value = result.encrypted_message.pair_points[0][1].x;
-            document.getElementById("cipher-y-encrypt-2").value = result.encrypted_message.pair_points[0][1].y;
+            document.getElementById("verification-result").value = result.is_valid;
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -143,26 +145,21 @@ function convertIntegerToText(integer) {
     return result;
 }
 
-function decryptText() {
-    let x_cipherText1 = document.getElementById("cipher-x-decrypt-1").value;
-    let y_cipherText1 = document.getElementById("cipher-y-decrypt-1").value;
-    let x_cipherText2 = document.getElementById("cipher-x-decrypt-2").value;
-    let y_cipherText2 = document.getElementById("cipher-y-decrypt-2").value;
+function sign() {
+    let message = document.getElementById("plain-integer-sign").value;
     let privateKey = {
         curve_name: curve_name,
-        secret_number: document.getElementById("s-prikey").value,
+        d: document.getElementById("d-prikey").value,
     };
 
     let data = {
         privateKey: privateKey,
-        encrypted_message: {
-            pair_points:[[x_cipherText1, y_cipherText1], [x_cipherText2, y_cipherText2]]
-        },
+        message: message,
     };
 
     console.log(data);
 
-    fetch("http://localhost:8000/crypto_system/asymmetric/ecc/decrypt", {
+    fetch("http://localhost:8000/signature_scheme/ecdsa/sign", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -172,10 +169,10 @@ function decryptText() {
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("plain-integer-decrypt").value =
-                result.decrypted_message;
-            document.getElementById("plain-alphabet-decrypt").value =
-                convertIntegerToText(result.decrypted_message);
+            document.getElementById("r-signature-sign").value =
+                result.signature.r;
+            document.getElementById("s-signature-sign").value =
+                result.signature.s;
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -186,10 +183,9 @@ function generateKey() {
     let s = document.getElementById("s-input");
     data = {
         curve_name: curve_name,
-        secret_number: s.value,
     };
     console.log(data);
-    url = "http://localhost:8000/crypto_system/asymmetric/ecc/generate_key";
+    url = "http://localhost:8000/signature_scheme/ecdsa/generate_key";
     fetch(url, {
         method: "POST",
         headers: {
@@ -203,16 +199,18 @@ function generateKey() {
             p = document.getElementById("p-input");
             a = document.getElementById("a-input");
             b = document.getElementById("b-input");
+            d = document.getElementById("d-input");
 
+            d.value = result.privateKey.d
             document.getElementById("p-pubkey").value = p.value;
             document.getElementById("a-pubkey").value = a.value;
             document.getElementById("b-pubkey").value = b.value;
             document.getElementById("p-prikey").value = p.value;
             document.getElementById("a-prikey").value = a.value;
             document.getElementById("b-prikey").value = b.value;
-            document.getElementById("xB-pubkey").value = result.publicKey.B.x;
-            document.getElementById("yB-pubkey").value = result.publicKey.B.y;
-            document.getElementById("s-prikey").value = result.privateKey.secret_number
+            document.getElementById("xQ-pubkey").value = result.publicKey.Q.x;
+            document.getElementById("yQ-pubkey").value = result.publicKey.Q.y;
+            document.getElementById("d-prikey").value = result.privateKey.d
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -254,9 +252,8 @@ function autoGenCrypSys() {
             p.value = result.p;
             a.value = result.a;
             b.value = result.b;
-            // Generate a random integer between 1 and p
-            let random = Math.floor(Math.random() * 1000000) + 1;
-            s.value = random;
+            // generateKey();
+        }).then(() => {
             generateKey();
         })
         .catch((error) => {

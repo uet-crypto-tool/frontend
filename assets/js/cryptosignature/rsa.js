@@ -7,7 +7,7 @@ buildForm.addEventListener("submit", (event) => {
     // Create a FormData object to gather form data
     let p = document.getElementById("p-input").value;
     let q = document.getElementById("q-input").value;
-    
+
     data = {
         p: p,
         q: q,
@@ -16,8 +16,8 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch("http://localhost:8000/crypto_system/asymmetric/rsa/generate_key", {
-        method: "POST", 
+    fetch("http://localhost:8000/signature_scheme/rsa/generate_key", {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
@@ -29,12 +29,11 @@ buildForm.addEventListener("submit", (event) => {
             // Handle the response data here (e.g., display a message)
             console.log("Success:", data);
             document.getElementById("n-result").value = result.publicKey.n;
-            document.getElementById("e-result").value = result.publicKey.e;
-            document.getElementById("d-result").value = result.privateKey.d;
+            document.getElementById("b-result").value = result.publicKey.e;
+            document.getElementById("a-result").value = result.privateKey.d;
         })
         .catch((error) => {
             console.error("Error:", error);
-
         });
 });
 
@@ -47,13 +46,12 @@ function copyToClipboard(elementId) {
     // alert("Copied the text: " + copyText.value);
 }
 
-
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
     // console.log('RSA script loaded');
 
     // Get the textarea elements
-    const plainTextAlphabet = document.getElementById('plain-alphabet-encrypt');
-    const plainTextInteger = document.getElementById('plain-integer-encrypt');
+    const plainTextAlphabet = document.getElementById("plain-alphabet-encrypt");
+    const plainTextInteger = document.getElementById("plain-integer-encrypt");
 
     // Function to convert text to integer representation
     function convertTextToInteger(text) {
@@ -65,48 +63,59 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Event listener for input on the plain text (alphabet) textarea
-    plainTextAlphabet.addEventListener('input', (event) => {
+    plainTextAlphabet.addEventListener("input", (event) => {
         const text = event.target.value;
         const integerRepresentation = convertTextToInteger(text);
         plainTextInteger.value = integerRepresentation;
     });
 });
 
-function encryptText() {
+function hash(input) {
+    let hash = 0;
+    if (input.length == 0) {
+        return hash;
+    }
+    for (let i = 0; i < input.length; i++) {
+        let char = input.charCodeAt(i);
+        hash = (hash << 5) - hash + char;
+        hash = hash & hash;
+    }
+    return hash;
+}
+function sign() {
     let plainText = document.getElementById("plain-integer-encrypt").value;
-    let publicKey = {
+    let privateKey = {
         n: document.getElementById("n-result").value,
-        e: document.getElementById("e-result").value,
+        d: document.getElementById("a-result").value,
     };
 
     let data = {
-        publicKey: publicKey,
+        privateKey: privateKey,
         message: plainText,
     };
 
     console.log(data);
 
-    fetch("http://localhost:8000/crypto_system/asymmetric/rsa/encrypt", {
+    fetch("http://localhost:8000/signature_scheme/rsa/sign", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            
         },
         body: JSON.stringify(data),
     })
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("cipher-integer-encrypt").value = result.encrypted_message.value;
+            document.getElementById("cipher-integer-encrypt").value =
+                result.signature.value;
         })
         .catch((error) => {
             console.error("Error:", error);
         });
 }
 
-
 function convertIntegerToText(integer) {
-    let result = '';
+    let result = "";
     let num = BigInt(integer);
     while (num > 0) {
         result = String.fromCharCode(Number(num % BigInt(256))) + result;
@@ -115,24 +124,25 @@ function convertIntegerToText(integer) {
     return result;
 }
 
-
-function decryptText() {
-    let cipherText = document.getElementById("cipher-integer-decrypt").value;
-    let privateKey = {
+function verify() {
+    let message = document.getElementById("message-integer-verify").value;
+    let signature = document.getElementById("message-signature-verify").value;
+    let publicKey = {
         n: document.getElementById("n-result").value,
-        d: document.getElementById("d-result").value,
+        e: document.getElementById("b-result").value,
     };
 
     let data = {
-        privateKey: privateKey,
-        encrypted_message: {
-            value: cipherText,
+        publicKey: publicKey,
+        message: message,
+        signature: {
+            value: signature,
         },
     };
 
     console.log(data);
 
-    fetch("http://localhost:8000/crypto_system/asymmetric/rsa/decrypt", {
+    fetch("http://localhost:8000/signature_scheme/rsa/verify", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -142,8 +152,8 @@ function decryptText() {
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("plain-integer-decrypt").value = result.decrypted_message;
-            document.getElementById("plain-alphabet-decrypt").value = convertIntegerToText(result.decrypted_message);
+            document.getElementById("result-signature-verify").value =
+                result.is_valid;
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -153,11 +163,42 @@ function decryptText() {
 function autoGenCrypSys() {
     let p = document.getElementById("p-input");
     let q = document.getElementById("q-input");
-    let e = document.getElementById("e-input");
-
-    
 
     p.value = 2614159;
     q.value = 4695947;
-    // e.value = 17;
+
+    fetch("http://localhost:8000/prime/generate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            bit_length: 128,
+        }),
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+            p.value = result.prime;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
+    fetch("http://localhost:8000/prime/generate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            bit_length: 128,
+        }),
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+            q.value = result.prime;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }

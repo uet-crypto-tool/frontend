@@ -45,7 +45,7 @@ https://templatemo.com/tm-579-cyborg-gaming
                     <div class="page-content">
                         <!-- ***** Most Popular Start ***** -->
                         <div class="heading-section">
-                            <h4>Welcome to RSA</h4>
+                            <h4>Welcome to Hello</h4>
                         </div>
                         <div class="all-crypto-systems">
                             <div class="row">
@@ -70,14 +70,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                     placeholder="Type q"
                                                     id="q-input"
                                                     name="q-number"
-
-                                                />
-                                                Enter e: <input
-                                                    class="col-lg-10"
-                                                    type="text"
-                                                    placeholder="Type e"
-                                                    id="e-input"
-                                                    name="e-number"
 
                                                 />
                                                 <div class="text-center mt-3">
@@ -106,15 +98,15 @@ https://templatemo.com/tm-579-cyborg-gaming
                                                 <button onclick="copyToClipboard('n-result')">Copy</button>
                                             </div>
                                             <div class="result-box">
-                                                <label for="e-result">e:</label>
-                                                <input type="text" id="e-result" readonly>
+                                                <label for="b-result">b:</label>
+                                                <input type="text" id="b-result" readonly>
                                                 <button onclick="copyToClipboard('e-result')">Copy</button>
                                             </div>
                                             <h4 class="text-white fs-4 fw-bold">Private key:</h4>
                                             <div class="result-box">
-                                                <label for="d-result">d:</label>
-                                                <input type="text" id="d-result" readonly>
-                                                <button onclick="copyToClipboard('d-result')">Copy</button>
+                                                <label for="a-result">a:</label>
+                                                <input type="text" id="a-result" readonly>
+                                                <button onclick="copyToClipboard('a-result')">Copy</button>
                                             </div>
                                         </div>
                                     </div>
@@ -126,24 +118,24 @@ https://templatemo.com/tm-579-cyborg-gaming
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="heading-section">
-                                        <h4>Encryption</h4>
+                                        <h4>Signing</h4>
                                     </div>
                                     <div class="flex-direction: column">
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
+                                            <h4 class="text-white fs-4 fw-bold">Message (alphabet):</h4>
                                             <textarea id="plain-alphabet-encrypt" placeholder="Type here" class="text-area-large"></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
+                                            <h4 class="text-white fs-4 fw-bold">Message (Integer):</h4>
                                             <textarea id="plain-integer-encrypt" class="text-area-large"  readonly></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
+                                            <h4 class="text-white fs-4 fw-bold">Signature:</h4>
                                             <textarea id="cipher-integer-encrypt" class="text-area-large" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button class="btn btn-primary" onclick="encryptText()">Encrypt</button>
+                                        <button class="btn btn-primary" onclick="sign()">Create signature</button>
                                     </div>
                                 </div>
                             </div>
@@ -153,24 +145,24 @@ https://templatemo.com/tm-579-cyborg-gaming
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="heading-section">
-                                        <h4>Decryption</h4>
+                                        <h4>Verifying</h4>
                                     </div>
                                     <div class="flex-direction: column">
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
-                                            <textarea placeholder="Type here" id="cipher-integer-decrypt" class="text-area-large" ></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">Message (Integer):</h4>
+                                            <textarea placeholder="Type here" id="message-integer-verify" class="text-area-large" ></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
-                                            <textarea class="text-area-large"  id="plain-integer-decrypt" readonly></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">Signature:</h4>
+                                            <textarea placeholder="Type here" class="text-area-large"  id="message-signature-verify"></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
-                                            <textarea readonly id="plain-alphabet-decrypt" class="text-area-large"></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">Verification Result:</h4>
+                                            <textarea readonly id="result-signature-verify" class="text-area-large"></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button class="btn btn-primary" onclick="decryptText()">Decrypt</button>
+                                        <button class="btn btn-primary" onclick="verify()">Verify signature</button>
                                     </div>
                                 </div>
                             </div>
@@ -190,6 +182,6 @@ https://templatemo.com/tm-579-cyborg-gaming
         <script src="../assets/js/tabs.js"></script>
         <script src="../assets/js/popup.js"></script>
         <script src="../assets/js/custom.js"></script>
-        <script src="../assets/js/cryptosystem/rsa.js"></script>
+        <script src="../assets/js/cryptosignature/rsa.js"></script>
     </body>
 </html>

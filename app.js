@@ -77,21 +77,21 @@ app.get("/crypto-systems/ecc", (req, res) => {
 });
 
 app.get("/crypto-signatures/rsa", (req, res) => {
-    res.render("crypto-systems/rsa", {
+    res.render("crypto-signatures/rsa", {
         title: "Home Page",
         message: "Welcome to my EJS site!",
     });
 });
 
 app.get("/crypto-signatures/elgamal", (req, res) => {
-    res.render("crypto-systems/elgamal", {
+    res.render("crypto-signatures/elgamal", {
         title: "Home Page",
         message: "Welcome to my EJS site!",
     });
 });
 
 app.get("/crypto-signatures/ecc", (req, res) => {
-    res.render("crypto-systems/ecc", {
+    res.render("crypto-signatures/ecc", {
         title: "Home Page",
         message: "Welcome to my EJS site!",
     });

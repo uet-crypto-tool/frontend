@@ -55,43 +55,51 @@ https://templatemo.com/tm-579-cyborg-gaming
                                             <div class="crypto-systems-input" style="display: flex; flex-direction: column;">
                                                 <h4 style="color: aqua;">Enter parameters</h4>
                                                 <form class="parameter-input" action="#">
-                                                    Enter p: <input
+                                                    p: <input readonly
                                                         class="col-lg-8"
                                                         type="text"
-                                                        placeholder="Type p"
+                                                        placeholder=""
                                                         id="p-input"
                                                         name="p-number"
                                                         onkeypress="handle"
                                                     />
-                                                    Enter a: <input
+                                                    a: <input readonly
                                                         class="col-lg-8"
                                                         type="text"
-                                                        placeholder="Type a"
+                                                        placeholder=""
                                                         id="a-input"
                                                         name="a-number"
                                                         onkeypress="handle"
                                                     />
-                                                    Enter b: <input
+                                                    b: <input readonly
                                                         class="col-lg-8"
                                                         type="text"
-                                                        placeholder="Type b"
+                                                        placeholder=""
                                                         id="b-input"
                                                         name="b-number"
                                                         onkeypress="handle"
                                                     />
+                                                    d: <input
+                                                        class="col-lg-8"
+                                                        type="text"
+                                                        placeholder=""
+                                                        id="d-input"
+                                                        name="d-number"
+                                                        onkeypress="handle"
+                                                    />
                                                 </form>
                                             </div>
-                                            <div class="crypto-systems-stats">
+                                            <!-- <div class="crypto-systems-stats">
                                                 <h3 style="color:aqua">Stats</h3>
                                                 <div class="crypto-systems-stats-item">
                                                     <h4>Elliptic Curve</h4>
                                                     <label class="fs-4 text-white" id="curve-equation">y^2 = x^3 + ax + b</label>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="text-center mt-3">
-                                            <button class="btn btn-primary" type="submit">Build</button>
-                                            <button class="btn btn-primary" onclick="autoGenCrypSys()">Auto Generate</button>
+                                            <!-- <button class="btn btn-primary" type="submit">Build</button> -->
+                                            <button class="btn btn-primary" type="submit" onclick="autoGenCrypSys()">Generate</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,20 +116,51 @@ https://templatemo.com/tm-579-cyborg-gaming
                                         <div class="crypto-systems-input">
                                             <h4 class="text-white fs-4 fw-bold">Public key:</h4>
                                             <div class="result-box">
-                                                <label for="d-result">n:</label>
-                                                <input type="text" id="n-result" readonly>
-                                                <button onclick="copyToClipboard('n-result')">Copy</button>
+                                                <label for="p-pubkey">p:</label>
+                                                <input type="text" id="p-pubkey" readonly>
+                                                <button onclick="copyToClipboard('p-pubkey')">Copy</button>
                                             </div>
                                             <div class="result-box">
-                                                <label for="e-result">e:</label>
-                                                <input type="text" id="e-result" readonly>
-                                                <button onclick="copyToClipboard('e-result')">Copy</button>
+                                                <label for="a-pubkey">a:</label>
+                                                <input type="text" id="a-pubkey" readonly>
+                                                <button onclick="copyToClipboard('a-pubkey')">Copy</button>
+                                            </div>
+                                            <div class="result-box">
+                                                <label for="b-pubkey">b:</label>
+                                                <input type="text" id="b-pubkey" readonly>
+                                                <button onclick="copyToClipboard('b-pubkey')">Copy</button>
+                                            </div>
+                                            <label style="color: white; font-size: larger; font-weight: 800;">Q:</label>
+                                            <div class="result-box">
+                                                <label style="font-weight: 300;" for="xQ-pubkey">x:</label>
+                                                <input type="text" id="xQ-pubkey" readonly>
+                                                <button onclick="copyToClipboard('xQ-pubkey')">Copy</button>
+                                            </div>
+                                            <div class="result-box">
+                                                <label style="font-weight: 300;" for="yQ-pubkey">y:</label>
+                                                <input type="text" id="yQ-pubkey" readonly>
+                                                <button onclick="copyToClipboard('yQ-pubkey')">Copy</button>
                                             </div>
                                             <h4 class="text-white fs-4 fw-bold">Private key:</h4>
                                             <div class="result-box">
-                                                <label for="d-result">d:</label>
-                                                <input type="text" id="d-result" readonly>
-                                                <button onclick="copyToClipboard('d-result')">Copy</button>
+                                                <label for="p-prikey">p:</label>
+                                                <input type="text" id="p-prikey" readonly>
+                                                <button onclick="copyToClipboard('p-prikey')">Copy</button>
+                                            </div>
+                                            <div class="result-box">
+                                                <label for="a-prikey">a:</label>
+                                                <input type="text" id="a-prikey" readonly>
+                                                <button onclick="copyToClipboard('a-prikey')">Copy</button>
+                                            </div>
+                                            <div class="result-box">
+                                                <label for="b-prikey">b:</label>
+                                                <input type="text" id="b-prikey" readonly>
+                                                <button onclick="copyToClipboard('b-prikey')">Copy</button>
+                                            </div>
+                                            <div class="result-box">
+                                                <label for="s-prikey">d:</label>
+                                                <input type="text" id="d-prikey" readonly>
+                                                <button onclick="copyToClipboard('s-prikey')">Copy</button>
                                             </div>
                                         </div>
                                     </div>
@@ -138,19 +177,22 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     <div class="flex-direction: column">
                                         <div class="col-12">
                                             <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
-                                            <textarea id="plain-alphabet-encrypt" placeholder="Type here" class="text-area-large"></textarea>
+                                            <textarea id="plain-alphabet-sign" placeholder="Type here" class="text-area-large"></textarea>
                                         </div>
                                         <div class="col-12">
                                             <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
-                                            <textarea id="plain-integer-encrypt" class="text-area-large"  readonly></textarea>
+                                            <textarea id="plain-integer-sign" class="text-area-large"  readonly></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
-                                            <textarea id="cipher-integer-encrypt" class="text-area-large" readonly></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">Signature:</h4>
+                                            <label class="fs-4 text-white">r: </label>
+                                            <textarea id="r-signature-sign" class="text-area-large" readonly></textarea>
+                                            <label class="fs-4 text-white">s: </label>
+                                            <textarea id="s-signature-sign" class="text-area-large" readonly></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button class="btn btn-primary" onclick="encryptText()">Encrypt</button>
+                                        <button class="btn btn-primary" onclick="sign()">Create signature</button>
                                     </div>
                                 </div>
                             </div>
@@ -164,20 +206,23 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     </div>
                                     <div class="flex-direction: column">
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
-                                            <textarea placeholder="Type here" id="cipher-integer-decrypt" class="text-area-large" ></textarea>
-                                        </div>
-                                        <div class="col-12">
                                             <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
-                                            <textarea class="text-area-large"  id="plain-integer-decrypt" readonly></textarea>
+                                            <textarea class="text-area-large"  id="plain-integer-verify"></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
-                                            <textarea readonly id="plain-alphabet-decrypt" class="text-area-large"></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">Signature:</h4>
+                                            <label class="fs-4 text-white">r: </label>
+                                            <textarea id="r-signature-verify" class="text-area-large"></textarea>
+                                            <label class="fs-4 text-white">s: </label>
+                                            <textarea id="s-signature-verify" class="text-area-large"></textarea>
+                                        </div>
+                                        <div class="col-12">
+                                            <h4 class="text-white fs-4 fw-bold">Verification result:</h4>
+                                            <textarea readonly id="verification-result" class="text-area-large"></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button class="btn btn-primary" onclick="decryptText()">Decrypt</button>
+                                        <button class="btn btn-primary" onclick="verify()">Verify</button>
                                     </div>
                                 </div>
                             </div>
@@ -197,5 +242,6 @@ https://templatemo.com/tm-579-cyborg-gaming
         <script src="../assets/js/tabs.js"></script>
         <script src="../assets/js/popup.js"></script>
         <script src="../assets/js/custom.js"></script>
+        <script src="../assets/js/cryptosignature/ecc.js"></script>
     </body>
 </html>
