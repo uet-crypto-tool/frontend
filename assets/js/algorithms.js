@@ -1,4 +1,3 @@
-
 let aksForm = document.getElementById("aks-form");
 
 // Add an event listener to the form
@@ -17,7 +16,7 @@ aksForm.addEventListener("submit", (event) => {
     };
     console.log(data);
     // Send the form data using fetch
-    fetch(process.env.API+"/prime/aks/check", {
+    fetch(`${window.env.API}` + "/prime/aks/check", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -33,14 +32,16 @@ aksForm.addEventListener("submit", (event) => {
         .then((result) => {
             console.log("Success:", data);
             // console.log(result);
-            document.getElementById("loading-spinner-aks").style.display = "none";
+            document.getElementById("loading-spinner-aks").style.display =
+                "none";
             // Handle the response data here (e.g., display a message)
             if (result.isPrime) {
                 document.getElementById("is-prime-aks").style.display = "block";
                 document.getElementById("not-prime-aks").style.display = "none";
             } else {
                 document.getElementById("is-prime-aks").style.display = "none";
-                document.getElementById("not-prime-aks").style.display = "block";
+                document.getElementById("not-prime-aks").style.display =
+                    "block";
             }
         })
         .catch((error) => {
@@ -48,15 +49,14 @@ aksForm.addEventListener("submit", (event) => {
         });
 });
 
-
-
 let millerRabbinForm = document.getElementById("miller-rabbin-form");
 
 // Add an event listener to the form
 millerRabbinForm.addEventListener("submit", (event) => {
     event.preventDefault(); // Prevent the default form submission
     // Show the loading spinner
-    document.getElementById("loading-spinner-miller-rabbin").style.display = "block";
+    document.getElementById("loading-spinner-miller-rabbin").style.display =
+        "block";
     // Hide the result divs
     document.getElementById("is-prime-miller-rabbin").style.display = "none";
     document.getElementById("not-prime-miller-rabbin").style.display = "none";
@@ -68,7 +68,7 @@ millerRabbinForm.addEventListener("submit", (event) => {
     };
     console.log(data);
     // Send the form data using fetch
-    fetch(process.env.API+"/prime/miller_rabbin/check", {
+    fetch(`${window.env.API}` + "/prime/miller_rabbin/check", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -84,14 +84,24 @@ millerRabbinForm.addEventListener("submit", (event) => {
         .then((result) => {
             console.log("Success:", data);
             // console.log(result);
-            document.getElementById("loading-spinner-miller-rabbin").style.display = "none";
+            document.getElementById(
+                "loading-spinner-miller-rabbin"
+            ).style.display = "none";
             // Handle the response data here (e.g., display a message)
             if (result.isPrime) {
-                document.getElementById("is-prime-miller-rabbin").style.display = "block";
-                document.getElementById("not-prime-miller-rabbin").style.display = "none";
+                document.getElementById(
+                    "is-prime-miller-rabbin"
+                ).style.display = "block";
+                document.getElementById(
+                    "not-prime-miller-rabbin"
+                ).style.display = "none";
             } else {
-                document.getElementById("is-prime-miller-rabbin").style.display = "none";
-                document.getElementById("not-prime-miller-rabbin").style.display = "block";
+                document.getElementById(
+                    "is-prime-miller-rabbin"
+                ).style.display = "none";
+                document.getElementById(
+                    "not-prime-miller-rabbin"
+                ).style.display = "block";
             }
         })
         .catch((error) => {
@@ -105,7 +115,8 @@ let generatePrimeForm = document.getElementById("generate-prime-form");
 generatePrimeForm.addEventListener("submit", (event) => {
     event.preventDefault(); // Prevent the default form submission
     // Show the loading spinner
-    document.getElementById("loading-spinner-generate-prime").style.display = "block";
+    document.getElementById("loading-spinner-generate-prime").style.display =
+        "block";
     // Get the input value
     let bits = document.getElementById("bits-input").value;
     // Create the data object
@@ -114,7 +125,7 @@ generatePrimeForm.addEventListener("submit", (event) => {
     };
     console.log(data);
     // Send the form data using fetch
-    fetch(process.env.API+"/prime/generate", {
+    fetch(`${window.env.API}` + "/prime/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -130,7 +141,9 @@ generatePrimeForm.addEventListener("submit", (event) => {
         .then((result) => {
             console.log("Success:", data);
             // console.log(result);
-            document.getElementById("loading-spinner-generate-prime").style.display = "none";
+            document.getElementById(
+                "loading-spinner-generate-prime"
+            ).style.display = "none";
             // Handle the response data here (e.g., display a message)
             document.getElementById("prime-result").value = result.prime;
         })
@@ -141,7 +154,8 @@ generatePrimeForm.addEventListener("submit", (event) => {
 
 function generateRelativePrime() {
     // Show the loading spinner
-    document.getElementById("loading-spinner-relative-prime").style.display = "block";
+    document.getElementById("loading-spinner-relative-prime").style.display =
+        "block";
     // Get the input value
     let p = document.getElementById("relative-prime-input").value;
 
@@ -160,9 +174,12 @@ function generateRelativePrime() {
         }) // Parse the response as JSON
         .then((result) => {
             // console.log(result);
-            document.getElementById("loading-spinner-relative-prime").style.display = "none";
+            document.getElementById(
+                "loading-spinner-relative-prime"
+            ).style.display = "none";
             // Handle the response data here (e.g., display a message)
-            document.getElementById("relative-prime-result").value = result.relative_prime;
+            document.getElementById("relative-prime-result").value =
+                result.relative_prime;
         })
         .catch((error) => {
             console.error("Error:", error);

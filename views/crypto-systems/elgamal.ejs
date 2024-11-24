@@ -13,13 +13,24 @@
         />
 
         <title>Cyborg - Awesome HTML5 Template</title>
+        <script>
+            window.env = {
+                API: "<%= process.env.API %>",
+            };
+        </script>
 
         <!-- Bootstrap core CSS -->
-        <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+        <link
+            href="../vendor/bootstrap/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
 
         <!-- Additional CSS Files -->
         <link rel="stylesheet" href="../assets/css/fontawesome.css" />
-        <link rel="stylesheet" href="../assets/css/templatemo-cyborg-gaming.css" />
+        <link
+            rel="stylesheet"
+            href="../assets/css/templatemo-cyborg-gaming.css"
+        />
         <link rel="stylesheet" href="../assets/css/owl.css" />
         <link rel="stylesheet" href="../assets/css/animate.css" />
         <link
@@ -36,8 +47,6 @@ https://templatemo.com/tm-579-cyborg-gaming
     </head>
 
     <body>
-
-
         <%- include('../partials/header.ejs') %>
         <div class="container">
             <div class="row">
@@ -52,26 +61,39 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     </div>
                                     <div class="col-12">
                                         <div class="crypto-systems-input">
-                                            <form class="parameter-input" id="build-form">
-                                                Enter p: <input
+                                            <form
+                                                class="parameter-input"
+                                                id="build-form"
+                                            >
+                                                Enter p:
+                                                <input
                                                     class="col-lg-10"
                                                     type="text"
                                                     placeholder="Type p"
                                                     id="p-input"
                                                     name="p-number"
-
                                                 />
-                                                Enter a: <input
+                                                Enter a:
+                                                <input
                                                     class="col-lg-10"
                                                     type="text"
                                                     placeholder="Type a"
                                                     id="a-input"
                                                     name="a-number"
-
                                                 />
                                                 <div class="text-center mt-3">
-                                                    <button class="btn btn-primary" type="submit">Build</button>
-                                                    <button class="btn btn-primary" onclick="autoGenCrypSys()">Auto Generate</button>
+                                                    <button
+                                                        class="btn btn-primary"
+                                                        type="submit"
+                                                    >
+                                                        Build
+                                                    </button>
+                                                    <button
+                                                        class="btn btn-primary"
+                                                        onclick="autoGenCrypSys()"
+                                                    >
+                                                        Auto Generate
+                                                    </button>
                                                 </div>
                                             </form>
                                         </div>
@@ -87,27 +109,67 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     </div>
                                     <div class="col-12">
                                         <div class="crypto-systems-input">
-                                            <h4 class="text-white fs-4 fw-bold">Public key:</h4>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Public key:
+                                            </h4>
                                             <div class="result-box">
                                                 <label for="p-result">p:</label>
-                                                <input type="text" id="p-result" readonly>
-                                                <button onclick="copyToClipboard('p-result')">Copy</button>
+                                                <input
+                                                    type="text"
+                                                    id="p-result"
+                                                    readonly
+                                                />
+                                                <button
+                                                    onclick="copyToClipboard('p-result')"
+                                                >
+                                                    Copy
+                                                </button>
                                             </div>
                                             <div class="result-box">
-                                                <label for="alpha-result">alpha:</label>
-                                                <input type="text" id="alpha-result" readonly>
-                                                <button onclick="copyToClipboard('alpha-result')">Copy</button>
+                                                <label for="alpha-result"
+                                                    >alpha:</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    id="alpha-result"
+                                                    readonly
+                                                />
+                                                <button
+                                                    onclick="copyToClipboard('alpha-result')"
+                                                >
+                                                    Copy
+                                                </button>
                                             </div>
                                             <div class="result-box">
-                                                <label for="beta-result">beta:</label>
-                                                <input type="text" id="beta-result" readonly>
-                                                <button onclick="copyToClipboard('beta-result')">Copy</button>
+                                                <label for="beta-result"
+                                                    >beta:</label
+                                                >
+                                                <input
+                                                    type="text"
+                                                    id="beta-result"
+                                                    readonly
+                                                />
+                                                <button
+                                                    onclick="copyToClipboard('beta-result')"
+                                                >
+                                                    Copy
+                                                </button>
                                             </div>
-                                            <h4 class="text-white fs-4 fw-bold">Private key:</h4>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Private key:
+                                            </h4>
                                             <div class="result-box">
                                                 <label for="a-result">a:</label>
-                                                <input type="text" id="a-result" readonly>
-                                                <button onclick="copyToClipboard('a-result')">Copy</button>
+                                                <input
+                                                    type="text"
+                                                    id="a-result"
+                                                    readonly
+                                                />
+                                                <button
+                                                    onclick="copyToClipboard('a-result')"
+                                                >
+                                                    Copy
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -123,21 +185,52 @@ https://templatemo.com/tm-579-cyborg-gaming
                                     </div>
                                     <div class="flex-direction: column">
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
-                                            <textarea id="plain-alphabet-encrypt" placeholder="Type here" class="text-area-large"></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Plain text (alphabet):
+                                            </h4>
+                                            <textarea
+                                                id="plain-alphabet-encrypt"
+                                                placeholder="Type here"
+                                                class="text-area-large"
+                                            ></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
-                                            <textarea id="plain-integer-encrypt" class="text-area-large"  readonly></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Plain text (Integer):
+                                            </h4>
+                                            <textarea
+                                                id="plain-integer-encrypt"
+                                                class="text-area-large"
+                                                readonly
+                                            ></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
-                                            <label class="fs-4 text-white">y1: </label><textarea id="y1-integer-encrypt" class="text-area-large" readonly></textarea>
-                                            <label class="fs-4 text-white">y2: </label><textarea id="y2-integer-encrypt" class="text-area-large" readonly></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Encrypted text (Integer):
+                                            </h4>
+                                            <label class="fs-4 text-white"
+                                                >y1: </label
+                                            ><textarea
+                                                id="y1-integer-encrypt"
+                                                class="text-area-large"
+                                                readonly
+                                            ></textarea>
+                                            <label class="fs-4 text-white"
+                                                >y2: </label
+                                            ><textarea
+                                                id="y2-integer-encrypt"
+                                                class="text-area-large"
+                                                readonly
+                                            ></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button class="btn btn-primary" onclick="encryptText()">Encrypt</button>
+                                        <button
+                                            class="btn btn-primary"
+                                            onclick="encryptText()"
+                                        >
+                                            Encrypt
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -150,23 +243,53 @@ https://templatemo.com/tm-579-cyborg-gaming
                                         <h4>Decryption</h4>
                                     </div>
                                     <div class="flex-direction: column">
-                                       
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Encrypted text (Integer):</h4>
-                                            <label class="fs-4 text-white">y1: </label><textarea id="y1-integer-decrypt" class="text-area-large" placeholder="Type here"></textarea>
-                                            <label class="fs-4 text-white">y2: </label><textarea id="y2-integer-decrypt" class="text-area-large" placeholder="Type here"></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Encrypted text (Integer):
+                                            </h4>
+                                            <label class="fs-4 text-white"
+                                                >y1: </label
+                                            ><textarea
+                                                id="y1-integer-decrypt"
+                                                class="text-area-large"
+                                                placeholder="Type here"
+                                            ></textarea>
+                                            <label class="fs-4 text-white"
+                                                >y2: </label
+                                            ><textarea
+                                                id="y2-integer-decrypt"
+                                                class="text-area-large"
+                                                placeholder="Type here"
+                                            ></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (Integer):</h4>
-                                            <textarea class="text-area-large"  id="plain-integer-decrypt" readonly></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Plain text (Integer):
+                                            </h4>
+                                            <textarea
+                                                class="text-area-large"
+                                                id="plain-integer-decrypt"
+                                                readonly
+                                            ></textarea>
                                         </div>
                                         <div class="col-12">
-                                            <h4 class="text-white fs-4 fw-bold">Plain text (alphabet):</h4>
-                                            <textarea readonly id="plain-alphabet-decrypt" class="text-area-large"></textarea>
+                                            <h4 class="text-white fs-4 fw-bold">
+                                                Plain text (alphabet):
+                                            </h4>
+                                            <textarea
+                                                readonly
+                                                id="plain-alphabet-decrypt"
+                                                class="text-area-large"
+                                            ></textarea>
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                        <button class="btn btn-primary" onclick="decryptText()">Decrypt</button>
+                                        <button
+                                            class="btn btn-primary"
+                                            onclick="decryptText()"
+                                        >
+                                            Decrypt
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -175,7 +298,6 @@ https://templatemo.com/tm-579-cyborg-gaming
                 </div>
             </div>
         </div>
-
 
         <!-- Scripts -->
         <!-- Bootstrap core JavaScript -->

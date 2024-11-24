@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
     // console.log('RSA script loaded');
 
     // Get the textarea elements
-    const plainTextAlphabet = document.getElementById('plain-alphabet-sign');
-    const plainTextInteger = document.getElementById('plain-integer-sign');
+    const plainTextAlphabet = document.getElementById("plain-alphabet-sign");
+    const plainTextInteger = document.getElementById("plain-integer-sign");
 
     // Function to convert text to integer representation
     function convertTextToInteger(text) {
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Event listener for input on the plain text (alphabet) textarea
-    plainTextAlphabet.addEventListener('input', (event) => {
+    plainTextAlphabet.addEventListener("input", (event) => {
         const text = event.target.value;
         const integerRepresentation = convertTextToInteger(text);
         plainTextInteger.value = integerRepresentation;
@@ -41,7 +41,7 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch(process.env.API+"/crypto_system/rsa/generate_key", {
+    fetch(`${window.env.API}` + "/crypto_system/rsa/generate_key", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -118,7 +118,7 @@ function verify() {
 
     console.log(data);
 
-    fetch(process.env.API+"/signature_scheme/ecdsa/verify", {
+    fetch(`${window.env.API}` + "/signature_scheme/ecdsa/verify", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -128,7 +128,8 @@ function verify() {
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("verification-result").value = result.is_valid;
+            document.getElementById("verification-result").value =
+                result.is_valid;
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -159,7 +160,7 @@ function sign() {
 
     console.log(data);
 
-    fetch(process.env.API+"/signature_scheme/ecdsa/sign", {
+    fetch(`${window.env.API}` + "/signature_scheme/ecdsa/sign", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -185,7 +186,7 @@ function generateKey() {
         curve_name: curve_name,
     };
     console.log(data);
-    url = process.env.API+"/signature_scheme/ecdsa/generate_key";
+    url = process.env.API + "/signature_scheme/ecdsa/generate_key";
     fetch(url, {
         method: "POST",
         headers: {
@@ -201,7 +202,7 @@ function generateKey() {
             b = document.getElementById("b-input");
             d = document.getElementById("d-input");
 
-            d.value = result.privateKey.d
+            d.value = result.privateKey.d;
             document.getElementById("p-pubkey").value = p.value;
             document.getElementById("a-pubkey").value = a.value;
             document.getElementById("b-pubkey").value = b.value;
@@ -210,7 +211,7 @@ function generateKey() {
             document.getElementById("b-prikey").value = b.value;
             document.getElementById("xQ-pubkey").value = result.publicKey.Q.x;
             document.getElementById("yQ-pubkey").value = result.publicKey.Q.y;
-            document.getElementById("d-prikey").value = result.privateKey.d
+            document.getElementById("d-prikey").value = result.privateKey.d;
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -234,7 +235,7 @@ function autoGenCrypSys() {
         "secp521r1",
     ];
     curve_name = list_curve[Math.floor(Math.random() * list_curve.length)];
-    url = process.env.API+"/elliptice_curve/domains/" + curve_name;
+    url = process.env.API + "/elliptice_curve/domains/" + curve_name;
     fetch(url, {
         method: "GET",
         headers: {
@@ -253,7 +254,8 @@ function autoGenCrypSys() {
             a.value = result.a;
             b.value = result.b;
             // generateKey();
-        }).then(() => {
+        })
+        .then(() => {
             generateKey();
         })
         .catch((error) => {

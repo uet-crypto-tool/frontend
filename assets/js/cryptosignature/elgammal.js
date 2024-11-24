@@ -16,7 +16,7 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch(process.env.API+"/signature_scheme/elgamal/generate_key", {
+    fetch(`${window.env.API}` + "/signature_scheme/elgamal/generate_key", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -88,7 +88,7 @@ function sign() {
 
     console.log(data);
 
-    fetch(process.env.API+"/signature_scheme/elgamal/sign", {
+    fetch(`${window.env.API}` + "/signature_scheme/elgamal/sign", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -140,7 +140,7 @@ function verify() {
 
     console.log(data);
 
-    fetch(process.env.API+"/signature_scheme/elgamal/verify", {
+    fetch(`${window.env.API}` + "/signature_scheme/elgamal/verify", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -177,7 +177,7 @@ function autoGenCrypSys() {
     let p = document.getElementById("p-input");
     let a = document.getElementById("a-input");
 
-    fetch(process.env.API+"/prime/generate", {
+    fetch(`${window.env.API}` + "/prime/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -192,7 +192,7 @@ function autoGenCrypSys() {
         .catch((error) => {
             console.error("Error:", error);
         });
-    fetch(process.env.API+"/prime/generate", {
+    fetch(`${window.env.API}` + "/prime/generate", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

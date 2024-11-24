@@ -7,7 +7,7 @@ buildForm.addEventListener("submit", (event) => {
     // Create a FormData object to gather form data
     let p = document.getElementById("p-input").value;
     let q = document.getElementById("q-input").value;
-    
+
     data = {
         p: p,
         q: q,
@@ -16,8 +16,8 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch(process.env.API+"/crypto_system/asymmetric/rsa/generate_key", {
-        method: "POST", 
+    fetch(`${window.env.API}` + "/crypto_system/asymmetric/rsa/generate_key", {
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
@@ -34,7 +34,6 @@ buildForm.addEventListener("submit", (event) => {
         })
         .catch((error) => {
             console.error("Error:", error);
-
         });
 });
 
@@ -47,13 +46,12 @@ function copyToClipboard(elementId) {
     // alert("Copied the text: " + copyText.value);
 }
 
-
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
     // console.log('RSA script loaded');
 
     // Get the textarea elements
-    const plainTextAlphabet = document.getElementById('plain-alphabet-encrypt');
-    const plainTextInteger = document.getElementById('plain-integer-encrypt');
+    const plainTextAlphabet = document.getElementById("plain-alphabet-encrypt");
+    const plainTextInteger = document.getElementById("plain-integer-encrypt");
 
     // Function to convert text to integer representation
     function convertTextToInteger(text) {
@@ -65,7 +63,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Event listener for input on the plain text (alphabet) textarea
-    plainTextAlphabet.addEventListener('input', (event) => {
+    plainTextAlphabet.addEventListener("input", (event) => {
         const text = event.target.value;
         const integerRepresentation = convertTextToInteger(text);
         plainTextInteger.value = integerRepresentation;
@@ -86,27 +84,26 @@ function encryptText() {
 
     console.log(data);
 
-    fetch(process.env.API+"/crypto_system/asymmetric/rsa/encrypt", {
+    fetch(`${window.env.API}` + "/crypto_system/asymmetric/rsa/encrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            
         },
         body: JSON.stringify(data),
     })
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("cipher-integer-encrypt").value = result.encrypted_message.value;
+            document.getElementById("cipher-integer-encrypt").value =
+                result.encrypted_message.value;
         })
         .catch((error) => {
             console.error("Error:", error);
         });
 }
 
-
 function convertIntegerToText(integer) {
-    let result = '';
+    let result = "";
     let num = BigInt(integer);
     while (num > 0) {
         result = String.fromCharCode(Number(num % BigInt(256))) + result;
@@ -114,7 +111,6 @@ function convertIntegerToText(integer) {
     }
     return result;
 }
-
 
 function decryptText() {
     let cipherText = document.getElementById("cipher-integer-decrypt").value;
@@ -132,7 +128,7 @@ function decryptText() {
 
     console.log(data);
 
-    fetch(process.env.API+"/crypto_system/asymmetric/rsa/decrypt", {
+    fetch(`${window.env.API}` + "/crypto_system/asymmetric/rsa/decrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -142,8 +138,10 @@ function decryptText() {
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("plain-integer-decrypt").value = result.decrypted_message;
-            document.getElementById("plain-alphabet-decrypt").value = convertIntegerToText(result.decrypted_message);
+            document.getElementById("plain-integer-decrypt").value =
+                result.decrypted_message;
+            document.getElementById("plain-alphabet-decrypt").value =
+                convertIntegerToText(result.decrypted_message);
         })
         .catch((error) => {
             console.error("Error:", error);
@@ -154,8 +152,6 @@ function autoGenCrypSys() {
     let p = document.getElementById("p-input");
     let q = document.getElementById("q-input");
     let e = document.getElementById("e-input");
-
-    
 
     p.value = 2614159;
     q.value = 4695947;

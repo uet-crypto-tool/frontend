@@ -16,26 +16,30 @@ buildForm.addEventListener("submit", (event) => {
     console.log(data);
 
     // Send the form data using fetch
-    fetch(process.env.API+"/crypto_system/asymmetric/elgamal/generate_key", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    })
+    fetch(
+        `${window.env.API}` + "/crypto_system/asymmetric/elgamal/generate_key",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        }
+    )
         .then((response) => response.json()) // Parse the response as JSON
         .then((result) => {
             console.log(result);
             // Handle the response data here (e.g., display a message)
             console.log("Success:", data);
             document.getElementById("p-result").value = result.publicKey.p;
-            document.getElementById("alpha-result").value = result.publicKey.alpha;
-            document.getElementById("beta-result").value = result.publicKey.beta;
+            document.getElementById("alpha-result").value =
+                result.publicKey.alpha;
+            document.getElementById("beta-result").value =
+                result.publicKey.beta;
             document.getElementById("a-result").value = result.privateKey.a;
         })
         .catch((error) => {
             console.error("Error:", error);
-
         });
 });
 
@@ -48,13 +52,12 @@ function copyToClipboard(elementId) {
     // alert("Copied the text: " + copyText.value);
 }
 
-
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener("DOMContentLoaded", (event) => {
     // console.log('RSA script loaded');
 
     // Get the textarea elements
-    const plainTextAlphabet = document.getElementById('plain-alphabet-encrypt');
-    const plainTextInteger = document.getElementById('plain-integer-encrypt');
+    const plainTextAlphabet = document.getElementById("plain-alphabet-encrypt");
+    const plainTextInteger = document.getElementById("plain-integer-encrypt");
 
     // Function to convert text to integer representation
     function convertTextToInteger(text) {
@@ -66,7 +69,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Event listener for input on the plain text (alphabet) textarea
-    plainTextAlphabet.addEventListener('input', (event) => {
+    plainTextAlphabet.addEventListener("input", (event) => {
         const text = event.target.value;
         const integerRepresentation = convertTextToInteger(text);
         plainTextInteger.value = integerRepresentation;
@@ -88,7 +91,7 @@ function encryptText() {
 
     console.log(data);
 
-    fetch(process.env.API+"/crypto_system/asymmetric/elgamal/encrypt", {
+    fetch(`${window.env.API}` + "/crypto_system/asymmetric/elgamal/encrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -98,17 +101,18 @@ function encryptText() {
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("y1-integer-encrypt").value = result.encrypted_message.y1;
-            document.getElementById("y2-integer-encrypt").value = result.encrypted_message.y2;
+            document.getElementById("y1-integer-encrypt").value =
+                result.encrypted_message.y1;
+            document.getElementById("y2-integer-encrypt").value =
+                result.encrypted_message.y2;
         })
         .catch((error) => {
             console.error("Error:", error);
         });
 }
 
-
 function convertIntegerToText(integer) {
-    let result = '';
+    let result = "";
     let num = BigInt(integer);
     while (num > 0) {
         result = String.fromCharCode(Number(num % BigInt(256))) + result;
@@ -117,11 +121,10 @@ function convertIntegerToText(integer) {
     return result;
 }
 
-
 function decryptText() {
     let y1 = document.getElementById("y1-integer-decrypt").value;
     let y2 = document.getElementById("y2-integer-decrypt").value;
-    let encrypted_message = {y1:y1, y2:y2};
+    let encrypted_message = { y1: y1, y2: y2 };
     let privateKey = {
         p: document.getElementById("p-result").value,
         a: document.getElementById("a-result").value,
@@ -135,7 +138,7 @@ function decryptText() {
 
     console.log(data);
 
-    fetch(process.env.API+"/crypto_system/asymmetric/elgamal/decrypt", {
+    fetch(`${window.env.API}` + "/crypto_system/asymmetric/elgamal/decrypt", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -145,8 +148,10 @@ function decryptText() {
         .then((response) => response.json())
         .then((result) => {
             console.log(result);
-            document.getElementById("plain-integer-decrypt").value = result.decrypted_message;
-            document.getElementById("plain-alphabet-decrypt").value = convertIntegerToText(result.decrypted_message);
+            document.getElementById("plain-integer-decrypt").value =
+                result.decrypted_message;
+            document.getElementById("plain-alphabet-decrypt").value =
+                convertIntegerToText(result.decrypted_message);
         })
         .catch((error) => {
             console.error("Error:", error);
