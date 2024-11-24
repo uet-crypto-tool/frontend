@@ -162,8 +162,37 @@ function autoGenCrypSys() {
     let p = document.getElementById("p-input");
     let a = document.getElementById("a-input");
 
-    p.value = 2614159;
-    a.value = 3;
+    fetch(`${window.env.API}` + "/prime/generate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            bit_length: 128,
+        }),
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+            p.value = result.prime;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 
-    // e.value = 17;
+    fetch(`${window.env.API}` + "/prime/generate", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ bit_length: 10 }),
+    })
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result);
+            a.value = result.prime;
+        })
+        .catch((error) => {
+            console.error("Error:", error);
+        });
 }

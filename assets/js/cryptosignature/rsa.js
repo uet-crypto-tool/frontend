@@ -164,9 +164,6 @@ function autoGenCrypSys() {
     let p = document.getElementById("p-input");
     let q = document.getElementById("q-input");
 
-    p.value = 2614159;
-    q.value = 4695947;
-
     fetch(`${window.env.API}` + "/prime/generate", {
         method: "POST",
         headers: {

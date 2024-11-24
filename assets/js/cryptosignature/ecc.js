@@ -186,7 +186,7 @@ function generateKey() {
         curve_name: curve_name,
     };
     console.log(data);
-    url = process.env.API + "/signature_scheme/ecdsa/generate_key";
+    url = window.env.API + "/signature_scheme/ecdsa/generate_key";
     fetch(url, {
         method: "POST",
         headers: {
@@ -235,7 +235,7 @@ function autoGenCrypSys() {
         "secp521r1",
     ];
     curve_name = list_curve[Math.floor(Math.random() * list_curve.length)];
-    url = process.env.API + "/elliptice_curve/domains/" + curve_name;
+    url = window.env.API + "/elliptice_curve/domains/" + curve_name;
     fetch(url, {
         method: "GET",
         headers: {
